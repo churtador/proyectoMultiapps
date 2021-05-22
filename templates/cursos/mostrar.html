@@ -1,0 +1,28 @@
+{%extends 'base_ingreso.html'%} {%load static%}
+
+{%block title%} {{cursos}}{%endblock%}</title>
+
+    {%block favicon%}
+    <link rel="shortcut icon" href="{% static 'master/img/turtle.ico'%}" />
+    {%endblock%}
+  </head>
+  <body>
+    {%block contenido%} 
+    <div id="cuerpo" class="container">
+        <h1>mostrar cursos</h1>
+        <br>
+        {%for curso in cursosTotales %}
+        <ul>
+            <li>nombre taller :{{curso.nombre}}</li>
+            <li>descripcion:{{curso.descripcion}}</li>
+            <li>{{curso.fecha}}{{curso.ubicacion}}</li>
+            <li>-o-</li>
+        </ul>
+          
+          {%endfor%}
+        </div>
+
+      </div>
+    {%endblock%} {# contenido principal#}
+  </body>
+</html>

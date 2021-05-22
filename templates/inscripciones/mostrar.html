@@ -1,0 +1,28 @@
+{%extends 'base_ingreso.html'%} {%load static%}
+
+{%block title%} {{inscritos}}{%endblock%}</title>
+
+    {%block favicon%}
+    <link rel="shortcut icon" href="{% static 'master/img/turtle.ico'%}" />
+    {%endblock%}
+  </head>
+  <body>
+    {%block contenido%} 
+    <div id="cuerpo" class="container">
+        <h1>mostrar ingresos</h1>
+        <br>
+        {%for inscrito in inscripcionesTotales %}
+        <ul>
+            <li>nombre taller :{{inscrito.taller.nombre}}</li>
+            <li>descripcion:{{inscrito.taller.descripcion}}</li>
+            <li>nombre participante:{{inscrito.participante.nombre}}{{inscrito.participante.apellido}}</li>
+            <li>-o-</li>
+        </ul>
+          
+          {%endfor%}
+        </div>
+
+      </div>
+    {%endblock%} {# contenido principal#}
+  </body>
+</html>

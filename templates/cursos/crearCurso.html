@@ -1,0 +1,31 @@
+{%extends 'base_ingreso.html'%} {%load static%}
+
+{%block title%} {{crearCurso}}{%endblock%}</title>
+
+    {%block favicon%}
+    <link rel="shortcut icon" href="{% static 'master/img/turtle.ico'%}" />
+    {%endblock%}
+  </head>
+  <body>
+    {%block contenido%} 
+    <div id="cuerpo" class="container flex">
+      <div class="grid-container8 container m-3 rounded-xl p-8 bg-gradient-to-r from-indigo-50 via-indigo-200 to-indigo-100">
+          <h1>----crear curso----</h1>
+          <form action="{% url 'crearCurso' %}" method="POST">
+            {%csrf_token%} {{formularioCurso.as_p}}
+            <button class="ml-auto bg-transparent hover:bg-indigo-300 text-indigo-300 font-semibold hover:text-white py-2 px-4 border border-purple-300 hover:border-transparent rounded">
+              Login
+            </button>
+          </form>
+          
+          {%for curso in cursosTotales%}
+          <ul>
+              <li>{{curso.nombre}}</li>
+            </ul>
+            {%endfor%}
+        </div>
+        <a class="ml-5 text-xl mt-2 text-red-50 hover:text-purple-400" href="{% url 'inscribirse' %}">incribirse</a>
+      </div>
+    {%endblock%} {# contenido principal#}
+  </body>
+</html>
