@@ -9,18 +9,35 @@
   <body>
     {%block contenido%} 
     <div id="cuerpo" class="container">
-        <h1>mostrar cursos</h1>
+        <h1>Cursos Disponible</h1>
         <br>
-        {%for curso in cursosTotales %}
-        <ul>
-            <li>nombre taller :{{curso.nombre}}</li>
-            <li>descripcion:{{curso.descripcion}}</li>
-            <li>{{curso.fecha}}{{curso.ubicacion}}</li>
-            <li>-o-</li>
-        </ul>
-          
-          {%endfor%}
-        </div>
+        
+        
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Ubicacion</th>
+              <th scope="col">Cupos</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for curso in cursosTotales %}
+            <tr>
+              <th scope="row">{{curso.id}}</th>
+              <td>{{curso.nombre}}</td>
+              <td>{{curso.descripcion}}</td>
+              <td>{{curso.fecha}}</td>
+              <td>{{curso.ubicacion}}</td>
+              <td>{{curso.capacidad}}</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
 
       </div>
     {%endblock%} {# contenido principal#}

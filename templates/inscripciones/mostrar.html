@@ -7,21 +7,29 @@
     {%endblock%}
   </head>
   <body>
-    {%block contenido%} 
+  {%block contenido%} 
     <div id="cuerpo" class="container">
-        <h1>mostrar ingresos</h1>
+        <h1>inscritos en cursos</h1>
         <br>
-        {%for inscrito in inscripcionesTotales %}
-        <ul>
-            <li>nombre taller :{{inscrito.taller.nombre}}</li>
-            <li>descripcion:{{inscrito.taller.descripcion}}</li>
-            <li>nombre participante:{{inscrito.participante.nombre}}{{inscrito.participante.apellido}}</li>
-            <li>-o-</li>
-        </ul>
-          
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Curso</th>
+              <th scope="col">descripcion </th>
+              <th scope="col">nombre participantes</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+          {%for inscrito in inscripcionesTotales %}
+            <tr>
+              <td>{{inscrito.taller.nombre}}</td>
+              <td>{{inscrito.taller.descripcion}}</td>
+              <td>{{inscrito.participante.nombre}}{{inscrito.participante.apellido}}</td>
+            </tr>
           {%endfor%}
-        </div>
-
+          </tbody>
+        </table>
       </div>
     {%endblock%} {# contenido principal#}
   </body>

@@ -1,0 +1,30 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+#conteiner {
+  background-color: #f2eadc;
+  padding: 20px;
+}
+#registro,
+#crearCurso,
+#inscripcion {
+  border: 2px solid #5b3924;
+  padding: 10px;
+  width: 400px;
+  box-shadow: 2px 2px 3px#eec170;
+  margin: 10px auto;
+}
+#registro,
+li {
+  list-style: none;
+}
+label {
+  width: 150px;
+}
+#logout {
+  margin-right: 10px;
+  margin-left: auto;
+  border: 1px solid red;
+}

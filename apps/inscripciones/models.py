@@ -4,8 +4,12 @@ from apps.cursos.models import *
 from apps.usuarios.models import *
 
 class Inscripcion(models.Model):
-    participante = models.ForeignKey(Usuario, related_name="inscripcionUsuario", on_delete=models.CASCADE)
-    taller = models.ForeignKey(Curso, related_name="inscripcionCurso", on_delete=models.CASCADE)
+    participante = models.ForeignKey(Usuario, related_name="inscripcionUsuario", on_delete=models.CASCADE, blank=True, 
+        null=True, 
+        default=None)
+    taller = models.ForeignKey(Curso, related_name="inscripcionCurso", on_delete=models.CASCADE, blank=True, 
+        null=True, 
+        default=None)
     confirmado = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

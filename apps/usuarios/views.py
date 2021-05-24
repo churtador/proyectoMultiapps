@@ -8,19 +8,19 @@ def index(request):
 
 def crear(request):
     if request.method == "POST":
-     
         formulario = FormularioRegistro(request.POST)
         if formulario.is_valid():
             newForm = formulario.save(commit=False)
             print(formulario.cleaned_data["password"])
             newForm.password = util.encriptar(formulario.cleaned_data["password"])
-          
+            newForm.acceso = 0
             newForm.save()
             request.session["id"]=newForm.id
             request.session["nombre"]=newForm.nombre
+            request.session["acceso"]=newForm.acceso
             print(request.session)
            
-            return redirect("../../cursos/crear/")
+            return HttpResponse("<a  href='../../cursos/crear/'>crearcurso</a>") 
         else:
             print("no es valido")
             context={
@@ -36,20 +36,21 @@ def crear(request):
         return render(request, "index.html", context)
     
 def login(request):
-    if request.method =="POST":
-        formularioLogin = FormularioLogin(request.POST)
-        
-        if formularioLogin.is_valid():
-            print("view login")
-            print(formularioLogin.id)
-            esteUsuario=Usuario.objects.filter(email=formularioLogin.email).first()
-            request.session["id"]=esteUsuario.id
-            request.session["nombre"]=esteUsuario.nombre
+    if request.method == "POST":
+        formulario = FormularioLogin(request.POST)
+        if formulario.is_valid(): 
+            newForm = formulario.save(commit=False)  
+            print(newForm.nombre)
+            
+            request.session["id"] = newForm.id
+            request.session["nombre"] = newForm.nombre  
+            request.session["acceso"] = newForm.acceso
+            
             return redirect("../../cursos/crear/")
         else:
             context={
                 "formularioRegistro": FormularioRegistro(),
-                "formularioLogin": formularioLogin,
+                "formularioLogin": formulario,
                 
             }
             return render(request, "index.html", context)
@@ -59,6 +60,32 @@ def login(request):
             "formularioLogin": FormularioLogin(),
         }
         return render(request, "index.html", context)
-    
+
+def registrarProfesor(request):
+    if request.method == "POST":
+     
+        formulario = FormularioRegistroProfesor(request.POST)
+        if formulario.is_valid():
+            newForm = formulario.save(commit=False)
+            newForm.password = util.encriptar(formulario.cleaned_data["password"])
+            newForm.acceso = 1 #profesor
+            newForm.save()
+            print(request.session)
+           
+            return HttpResponse("<p>profesor creado!</p><br><a  href='../../cursos/crear/'>volver</a>") 
+        else:
+            print("no es valido")
+            context={
+                "formularioRegistroProfesor": formulario,
+            }
+            return render(request, "usuarios/registrarProfesor.html", context)
+            #######
+    else:
+        context={
+            "formularioRegistroProfesor": FormularioRegistroProfesor()
+        }
+        return render(request, "usuarios/registrarProfesor.html", context)
+      
+      
 
 # Create your views here.

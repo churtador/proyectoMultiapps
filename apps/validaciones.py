@@ -57,3 +57,14 @@ def existeRepetido(email):
                 {"email": "este Email ya existe en los registros, por favor intente logearse"}
             ])
 
+def validacionEmail(email):
+    EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+    if not EMAIL_REGEX.match(email):
+        return False
+
+def ValidarExisteEmail(email):
+    usuarios = Usuario.objects.filter(email=email)
+    print(usuarios)
+    if len(Usuario.objects.filter(email=email))<1:
+       return False    
+       
