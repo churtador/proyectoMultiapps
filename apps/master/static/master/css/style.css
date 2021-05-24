@@ -28,3 +28,26 @@ label {
   margin-left: auto;
   border: 1px solid red;
 }
+#publicidad {
+  height: 100px;
+  display: flex;
+  width: 80%;
+  margin: 30px auto;
+  border-radius: 3px;
+  background-color: #eec170;
+  color: #ff9f1c;
+}
+#textoPublicidad {
+  margin: 30px auto;
+}
+#pieDePagina {
+  height: 80px;
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+  background-color: #5b3924;
+  color: #ff9f1c;
+}
+#textoPieDePagina {
+  margin: 30px auto;
+}

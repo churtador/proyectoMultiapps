@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from .formulario import *
 
 def index(request):
@@ -32,9 +32,14 @@ def crear(request):
     
 def mostrar(request):
     context={
-        "cursosTotales":Curso.objects.all()
+        "cursosActivosTotales":Curso.objects.filter(activo=1)
     }
     return render(request, "cursos/mostrar.html", context)
 
+def eliminarCurso(request, idCurso):
+    esteCurso=Curso.objects.get(id=idCurso)
+    esteCurso.activo = 0
+    esteCurso.save()
+    return redirect("../mostrar/")
 
 # Create your views here.

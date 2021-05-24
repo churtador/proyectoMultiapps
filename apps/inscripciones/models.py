@@ -10,7 +10,7 @@ class Inscripcion(models.Model):
     taller = models.ForeignKey(Curso, related_name="inscripcionCurso", on_delete=models.CASCADE, blank=True, 
         null=True, 
         default=None)
-    confirmado = models.BooleanField()
+    confirmado = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
       

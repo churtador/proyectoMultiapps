@@ -9,6 +9,7 @@ class Curso(models.Model):
     nombre = models.CharField(max_length=50, validators=[MinLengthValidator(2)])
     descripcion = models.CharField(max_length=250, validators=[MinLengthValidator(2)])
     fecha =  models.DateField()
+    activo = models.BooleanField(default=1)
     ubicacion = models.CharField(max_length=100, validators=[MinLengthValidator(2)])
     capacidad = models.FloatField(default=10)
     created_at = models.DateTimeField(auto_now_add=True)

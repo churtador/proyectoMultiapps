@@ -29,7 +29,7 @@ def crear(request):
     
 def mostrar(request):
     context={
-        "inscripcionesTotales":Inscripcion.objects.all()
+        "inscripcionesTotales":Inscripcion.objects.filter(confirmado=1)
     }
     return render(request, "inscripciones/mostrar.html", context)
 
@@ -40,6 +40,14 @@ def misCursos(request):
     }
     return render(request, "inscripciones/misCursos.html", context)
 
-def eliminarInscripcion(request, idCurso):
+def eliminarInscripcion(request, idInscripcion):
+    estaInscripcion=Inscripcion.objects.get(id=idInscripcion)
+    estaInscripcion.confirmado = 0
+    estaInscripcion.save()
+    return redirect("../mostrar/")
+
+
+
+
     pass
 # Create your views here.

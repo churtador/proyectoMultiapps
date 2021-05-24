@@ -9,15 +9,9 @@ import apps.utilidades as util
 class FormularioInscripcion(forms.ModelForm):
     class Meta:
         model = Inscripcion
-        fields = "__all__"
-        widgets ={
-            "confirmado": forms. CheckboxInput(
-                attrs={
-                    "placeholder":"confirma",
-                    
-                }
-            ),
-        }
+
+        fields = ["participante", "taller"]  
+        
  
      
        

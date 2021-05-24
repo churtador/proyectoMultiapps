@@ -9,7 +9,7 @@
   <body>
     {%block contenido%} 
     <div id="cuerpo" class="container">
-        <h1>Cursos Disponible</h1>
+        <h1>Cursos Activos</h1>
         <br>
         
         
@@ -22,10 +22,11 @@
               <th scope="col">Fecha</th>
               <th scope="col">Ubicacion</th>
               <th scope="col">Cupos</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            {%for curso in cursosTotales %}
+            {%for curso in cursosActivosTotales %}
             <tr>
               <th scope="row">{{curso.id}}</th>
               <td>{{curso.nombre}}</td>
@@ -33,6 +34,7 @@
               <td>{{curso.fecha}}</td>
               <td>{{curso.ubicacion}}</td>
               <td>{{curso.capacidad}}</td>
+              <td><a href="{% url 'eliminarCurso' idCurso=curso.id %}">eliminar</a></td>
             </tr>
             {%endfor%}
           </tbody>
