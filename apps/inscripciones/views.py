@@ -34,9 +34,9 @@ def mostrar(request):
     return render(request, "inscripciones/mostrar.html", context)
 
 def misCursos(request):
-    esteUsuario=Usuario.objects.filter(id=request.session["id"]).first()
+    
     context={
-        "misCursos":Inscripcion.objects.filter(participante__id=esteUsuario.id)
+        "misCursos":Inscripcion.objects.filter(participante__id=request.session["id"])
     }
     return render(request, "inscripciones/misCursos.html", context)
 

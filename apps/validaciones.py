@@ -24,7 +24,6 @@ def validarEmail(email):
                 )
 def existeEmail(email):
     usuarios = Usuario.objects.filter(email=email)
-    print(usuarios)
     if len(Usuario.objects.filter(email=email))<1:
             
         raise ValidationError(
@@ -43,14 +42,13 @@ def mayorDe18(fecha_Nacimiento):
 def fechaEsFutura(fecha):
     hoy = datetime.strptime(strftime("%Y-%m-%d"), '%Y-%m-%d')
     fechaAValidar = datetime.strptime(str(fecha), '%Y-%m-%d')
-    if fechaAValidar > hoy:
+    if fechaAValidar <= hoy:
                 raise ValidationError(
             [
                 {"fecha": "la fecha debe estar en el futuro"}
             ])
 def existeRepetido(email):
     usuarios = Usuario.objects.filter(email=email)
-    print(usuarios)
     if len(Usuario.objects.filter(email=email))>0:
         raise ValidationError(
             [
@@ -64,7 +62,6 @@ def validacionEmail(email):
 
 def ValidarExisteEmail(email):
     usuarios = Usuario.objects.filter(email=email)
-    print(usuarios)
     if len(Usuario.objects.filter(email=email))<1:
        return False    
        

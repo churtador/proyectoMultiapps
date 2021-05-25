@@ -8,23 +8,35 @@
   </head>
   <body>
     {%block contenido%} 
-    <div id="cuerpo" class="container">
-        <h1>mis cursos</h1>
+
+    <h1>mis cursos</h1>
         <br>
-        {%for inscripcion in misCursos %}
-        <ul>
-            <li>nombre taller :{{inscripcion.taller.nombre}}</li>
-            <li>confirmado:{{inscripcion.confirmado}}</li>
-            <li>{{inscripcion.taller.fecha}}{{inscripcion.taller.ubicacion}}</li>
-            <li><a  href="{% url 'eliminarInscripcion' %}">eliminar</a></li>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Curso</th>
+              <th scope="col">confirmado </th>
+              <th scope="col">fecha</th>
+              <th scope="col">ubicacion</th>
+              <th></th>
+              
+            </tr>
+          </thead>
+          <tbody>
+          {%for inscripcion in misCursos %}
+          <tr>
+            <td>{{inscripcion.taller.nombre}}</td>
+            <td>{{inscripcion.confirmado}}</td>
+            <td>{{inscripcion.taller.fecha}}</td>
+            <td>{{inscripcion.taller.ubicacion}}</td>
+            <th><a href="{% url 'eliminarInscripcion' idInscripcion=inscripcion.id %}">eliminar</a></th>
+            
+          </tr>
+        {%endfor%}
+        </tbody>
+      </table>
+    </div>
+  {%endblock%} {# contenido principal#}
 
-        </ul>
-          
-          {%endfor%}
-          <h1>fin de lista</h1>
-        </div>
-
-      </div>
-    {%endblock%} {# contenido principal#}
   </body>
 </html>

@@ -18,11 +18,10 @@ def crear(request):
             request.session["id"]=newForm.id
             request.session["nombre"]=newForm.nombre
             request.session["acceso"]=newForm.acceso
-            print(request.session)
-           
+            
             return HttpResponse("<a  href='../../cursos/crear/'>crearcurso</a>") 
         else:
-            print("no es valido")
+            
             context={
                 "formularioRegistro": formulario,
                 "formularioLogin":FormularioLogin()
@@ -40,11 +39,13 @@ def login(request):
         formulario = FormularioLogin(request.POST)
         if formulario.is_valid(): 
             newForm = formulario.save(commit=False)  
-            print(newForm.nombre)
+            print("&"*90)
+            esteUsuario=Usuario.objects.filter(email=newForm.email).first()
             
-            request.session["id"] = newForm.id
-            request.session["nombre"] = newForm.nombre  
-            request.session["acceso"] = newForm.acceso
+            
+            request.session["id"] = esteUsuario.id
+            request.session["nombre"] = esteUsuario.nombre  
+            request.session["acceso"] = esteUsuario.acceso
             
             return redirect("../../cursos/crear/")
         else:
@@ -53,13 +54,13 @@ def login(request):
                 "formularioLogin": formulario,
                 
             }
-            return render(request, "index.html", context)
+            return render(request, "master/index.html", context)
     else:
         context={
             "formularioRegistro": FormularioRegistro(),
             "formularioLogin": FormularioLogin(),
         }
-        return render(request, "index.html", context)
+        return render(request, "master/index.html", context)
 
 def registrarProfesor(request):
     if request.method == "POST":
